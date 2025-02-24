@@ -13,35 +13,41 @@
         <link rel="stylesheet" href="/stylesheets/design.css" />
     </head>
     <body>
-        <h1 id="searchTitle" class="text-center mt-5">Search Results > <span>YOUR_SEARCH_QUERY_HERE</span></h1>
+        <h1 id="searchTitle" class="text-center mt-5">
+            Search Results > <span><%= searchQuery.toUpperCase() %></span>
+          </h1>
 
-        <div class="card w-75 mb-5">
-            <div class="row no-gutters">
-                <div class="col-md-4">
+        <% data["results"].forEach((movie) => { %>
+              <div class="card w-75 mb-5">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
                     <img
-                        src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/YOUR_POSTER_PATH_HERE"
-                        alt=""
-                        class="img-fluid card-img"
+                      src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/<%= movie["poster_path"] %>"
+                      alt=""
+                      class="img-fluid card-img"
                     />
-                </div>
-
-                <div class="col-md-8">
+                  </div>
+          
+                  <div class="col-md-8">
                     <div class="card-body">
-                        <h2 class="card-title">YOUR_MOVIE_TITLE_HERE</h2>
-
-                        <hr />
-                        <p class="card-text">YOUR_MOVIE_OVERVIEW_HERE</p>
-
-                        <hr />
-
-                        <p class="card-text">Date Published: <b>YOUR_RELEASE_DATE_HERE</b></p>
-
-                        <p class="card-text">Total Votes: <b>YOUR_VOTE_COUNT_HERE</b></p>
-
-                        <p class="card-text">Rating: <b>YOUR_VOTE_AVERAGE_HERE</b></p>
+                      <h2 class="card-title"><%= movie["original_title"] %></h2>
+          
+                      <hr />
+                      <p class="card-text"><%= movie["overview"] %></p>
+          
+                      <hr />
+          
+                      <p class="card-text">
+                        Date Published: <b><%= movie["release_date"] %></b>
+                      </p>
+          
+                      <p class="card-text">Total Votes: <b><%= movie["vote_count"] %></b></p>
+          
+                      <p class="card-text">Rating: <b><%= movie["vote_average"] %></b></p>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
+              </div>
+        <% }) %>
     </body>
 </html>
